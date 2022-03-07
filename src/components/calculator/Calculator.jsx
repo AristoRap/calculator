@@ -13,11 +13,11 @@ export default class Calculator extends Component {
             <div className="calculator-operators">
               <button>C</button>
               <button>DEL</button>
-            </div>
               <button>÷</button>
               <button>x</button>
               <button>+</button>
               <button>-</button>
+            </div>
         </div>
       </div>
     )
