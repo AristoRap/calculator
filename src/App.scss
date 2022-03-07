@@ -1,0 +1,12 @@
+// Color palette
+$background: #F0F5F9;
+$background-calc: #C9D6DF;
+
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background;
+}

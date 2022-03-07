@@ -1,23 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Calculator from "./components/calculator/Calculator";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hey! I created a react boilerplate.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Calculator/>
     </div>
   );
 }
