@@ -1,5 +1,5 @@
 // Color palette
-$background-calc: white;
+$background-calc: #202020;
 
 .calculator {
   min-height: 100vh;
@@ -12,7 +12,6 @@ $background-calc: white;
   &-screen {
     font-size: 3rem;
     text-align: right;
-    background-color: #2D4059;
     color: white;
     padding: 8rem 1rem 0.5rem 1rem;
     border-radius: 0 0 1rem 1rem;
@@ -23,20 +22,35 @@ $background-calc: white;
   }
 
   &-buttons {
+    padding: 4px;
     flex-grow: 1;
     display: grid;
     gap: 0.5rem;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
+    background-color: rgba(50, 50, 50, 0.8);
+    border-radius: 1rem 1rem 0 0;
   }
 
   button {
+    background-color: rgba(40, 40, 40, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     outline: none;
     border: none;
     font-size: 1.5rem;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 1rem;
+    box-shadow: 0 0 4px transparent;
+    transition: box-shadow 0.3s;
+    letter-spacing: 0.1rem;
+    &:active {
+      box-shadow: 0 0 4px white;
+      transition: box-shadow 0.3s;
+    }
+  }
+
+  .ac {
+    color: #cc3333;
   }
 
   .span-two {
