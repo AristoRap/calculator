@@ -1,22 +1,44 @@
 // Color palette
-$background-calc: #C9D6DF;
+$background-calc: white;
 
 .calculator {
-  &-wrapper {
-    display: flex;
-    min-height: 100vh;
-  }
-  @media (min-width: 25rem) {
-    max-width: 20rem;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 25rem;
   height: fit-content;
   width: 100%;
-  background-color: $background-calc;
 
   &-screen {
+    font-size: 3rem;
     text-align: right;
     background-color: #2D4059;
     color: white;
-    padding: 3rem 1rem 0.5rem 1rem;
+    padding: 8rem 1rem 0.5rem 1rem;
+  }
+  &-result {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &-buttons {
+    flex-grow: 1;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+  }
+
+  .span-two {
+    grid-column: span 2;
   }
 }
