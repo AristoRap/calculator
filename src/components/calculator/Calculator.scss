@@ -5,18 +5,20 @@ $background-calc: #202020;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   max-width: 25rem;
   height: fit-content;
   width: 100%;
 
   &-screen {
+    min-height: 14rem;
     font-size: 3rem;
     text-align: right;
     color: white;
     padding: 8rem 1rem 0.5rem 1rem;
     border-radius: 0 0 1rem 1rem;
   }
-  &-result {
+  &-secondary {
     font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.5);
   }

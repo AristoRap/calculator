@@ -1,36 +1,47 @@
-import React, { Component } from 'react'
-import "./Calculator.scss"
+import React, { Component } from "react";
+import "./Calculator.scss";
+import Button from "../../components/button/Button";
 
 export default class Calculator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { primary: '', secondary: ''};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(value) {
+    let newPrimary = this.state.primary + value;
+    let newSecondary = newPrimary;
+    this.setState({ primary: newPrimary, secondary: newSecondary });
+  };
+
   render() {
-  return (
+    return (
       <div className="calculator">
         <div className="calculator-screen">
-          <div className="calculator-result">13</div>
-          <div className="calculator-current">6+7</div>
+          <div className="calculator-secondary">{this.state.secondary}</div>
+          <div className="calculator-primary">{this.state.primary}</div>
         </div>
         <div className="calculator-buttons">
-          <button className="span-two ac">AC</button>
-          <button>DEL</button>
-          <button>÷</button>
-
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>x</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>+</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>-</button>
-          <button>.</button>
-          <button>0</button>
-          <button className="span-two">=</button>
+          <Button value="AC" class="span-two ac" />
+          <Button value="DEL" />
+          <Button value="÷" />
+          <Button value="1" onClick={this.handleClick} />
+          <Button value="2" onClick={this.handleClick} />
+          <Button value="3" onClick={this.handleClick} />
+          <Button value="x" />
+          <Button value="4" onClick={this.handleClick} />
+          <Button value="5" onClick={this.handleClick} />
+          <Button value="6" onClick={this.handleClick} />
+          <Button value="+" />
+          <Button value="7" onClick={this.handleClick} />
+          <Button value="8" onClick={this.handleClick} />
+          <Button value="9" onClick={this.handleClick} />
+          <Button value="-" />
+          <Button value="." onClick={this.handleClick} />
+          <Button value="0" onClick={this.handleClick} />
+          <Button value="=" class="span-two" />
         </div>
       </div>
-    )
+    );
   }
 }
