@@ -11,6 +11,10 @@ $background-calc: #202020;
   width: 100%;
 
   &-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-wrap: break-word;
     min-height: 14rem;
     font-size: 3rem;
     text-align: right;
