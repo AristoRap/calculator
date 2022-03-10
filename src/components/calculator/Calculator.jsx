@@ -17,6 +17,10 @@ export default class Calculator extends Component {
       this.delete();
     } else if (operators.includes(value)) {
       this.operate(value);
+    } else if (value === '.') {
+      let newPrimary = this.state.primary.includes(value) ? this.state.primary : this.state.primary + value;
+      let newSecondary = newPrimary;
+      this.setState({ primary: newPrimary, secondary: newSecondary });
     } else {
       let newPrimary =
         this.state.primary === "0" ? value : this.state.primary + value;
