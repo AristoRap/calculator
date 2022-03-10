@@ -13,19 +13,23 @@ export default class Calculator extends Component {
 
     if (value === "AC") {
       this.allClear();
+
     } else if (value === "DEL") {
       this.delete();
-    } else if (operators.includes(value)) {
-      this.operate(value);
+
+    } else if (operators.includes(value) && this.state.secondary.includes(value)) {
+        this.perform(value);
     } else if (value === '.') {
       let newPrimary = this.state.primary.includes(value) ? this.state.primary : this.state.primary + value;
       let newSecondary = newPrimary;
       this.setState({ primary: newPrimary, secondary: newSecondary });
+
+    } else if (operators.includes(value)) {
+      this.operate(value);
     } else {
       let newPrimary =
         this.state.primary === "0" ? value : this.state.primary + value;
-      let newSecondary = newPrimary === "0" ? "" : newPrimary;
-      this.setState({ primary: newPrimary, secondary: newSecondary });
+      this.setState({ primary: newPrimary });
     }
   }
   allClear() {
@@ -34,17 +38,34 @@ export default class Calculator extends Component {
   delete() {
     const newPrimary =
       this.state.primary.length === 1 ? "0" : this.state.primary.slice(0, -1);
-    const newSecondary = newPrimary === "0" ? "" : newPrimary;
-    this.setState({ primary: newPrimary, secondary: newSecondary });
+    this.setState({ primary: newPrimary });
   }
   operate(operation) {
     const operators = ["÷", "x", "+", "-"];
-    const newPrimary = operators.includes(this.state.primary.slice(-1))
+    const newSecondary = operators.includes(this.state.primary.slice(-1))
     ? this.state.primary.slice(0, -1) + operation
     : this.state.primary + operation;
-    const newSecondary = this.state.secondary
+    const newPrimary = '0';
     this.setState({ primary: newPrimary, secondary: newSecondary });
-    // if (this.state.primary)
+  }
+  perform(operation) {
+    const previous = this.state.secondary.slice(0, -1);
+    const current = this.state.primary
+    let newSecondary;
+    if (operation === 'x') {
+      newSecondary =
+        (Number(previous) * Number(current)).toString() + operation;
+    } else if (operation === '+') {
+      newSecondary =
+        (Number(previous) + Number(current)).toString() + operation;
+    } else if (operation === '-') {
+      newSecondary =
+        (Number(previous) - Number(current)).toString() + operation;
+    } else {
+      newSecondary =
+        (Number(previous) / Number(current)).toString() + operation;
+    }
+    this.setState({ primary: '0', secondary: newSecondary });
   }
   render() {
     return (
