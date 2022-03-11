@@ -17,15 +17,21 @@ export default class Calculator extends Component {
     } else if (value === "DEL") {
       this.delete();
 
-    } else if (operators.includes(value) && this.state.secondary.includes(value)) {
-        this.perform(value);
-    } else if (value === '.') {
-      let newPrimary = this.state.primary.includes(value) ? this.state.primary : this.state.primary + value;
+    } else if (
+      operators.includes(value) &&
+      operators.includes(this.state.secondary.slice(-1))
+    ) {
+      this.perform(value);
+    } else if (value === ".") {
+      let newPrimary = this.state.primary.includes(value)
+        ? this.state.primary
+        : this.state.primary + value;
       let newSecondary = newPrimary;
       this.setState({ primary: newPrimary, secondary: newSecondary });
-
     } else if (operators.includes(value)) {
       this.operate(value);
+    } else if (value === '=') {
+      this.calculate();
     } else {
       let newPrimary =
         this.state.primary === "0" ? value : this.state.primary + value;
@@ -45,7 +51,7 @@ export default class Calculator extends Component {
     const newSecondary = operators.includes(this.state.primary.slice(-1))
     ? this.state.primary.slice(0, -1) + operation
     : this.state.primary + operation;
-    const newPrimary = '0';
+    const newPrimary = '';
     this.setState({ primary: newPrimary, secondary: newSecondary });
   }
   perform(operation) {
@@ -54,18 +60,39 @@ export default class Calculator extends Component {
     let newSecondary;
     if (operation === 'x') {
       newSecondary =
-        (Number(previous) * Number(current)).toString() + operation;
+      (Number(previous) * Number(current)).toString() + operation;
     } else if (operation === '+') {
       newSecondary =
-        (Number(previous) + Number(current)).toString() + operation;
+      (Number(previous) + Number(current)).toString() + operation;
     } else if (operation === '-') {
       newSecondary =
-        (Number(previous) - Number(current)).toString() + operation;
+      (Number(previous) - Number(current)).toString() + operation;
     } else {
       newSecondary =
-        (Number(previous) / Number(current)).toString() + operation;
+      (Number(previous) / Number(current)).toString() + operation;
     }
-    this.setState({ primary: '0', secondary: newSecondary });
+    this.setState({ primary: newSecondary, secondary: '' });
+  }
+  calculate() {
+    const previous = this.state.secondary.slice(0, -1);
+    const current = this.state.primary
+    let newSecondary;
+    const operation = this.state.secondary.slice(-1);
+    if (operation === 'x') {
+      newSecondary =
+      (Number(previous) * Number(current)).toString();
+    } else if (operation === '+') {
+      newSecondary =
+      (Number(previous) + Number(current)).toString();
+    } else if (operation === '-') {
+      newSecondary =
+      (Number(previous) - Number(current)).toString();
+    } else {
+      newSecondary =
+      (Number(previous) / Number(current)).toString();
+    }
+    this.setState({ primary: newSecondary, secondary:''});
+
   }
   render() {
     return (
@@ -92,7 +119,7 @@ export default class Calculator extends Component {
           <Button value="-" onClick={this.handleClick} />
           <Button value="." onClick={this.handleClick} />
           <Button value="0" onClick={this.handleClick} />
-          <Button value="=" class="span-two" />
+          <Button value="=" onClick={this.handleClick} class="span-two" />
         </div>
       </div>
     );
